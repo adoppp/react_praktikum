@@ -26,12 +26,18 @@ students' quantity
 # VALIDATION
 ```
 email validator:
-  - 
+  - required
+  - @
+  - text before & after @
+  - . after domain
+
 password validator:
   - required
   - min 8
-  - at least one capital letter
+  - at least one capital letter A-Z
   - at least one figure
+  - at least one lette a-z
+  - at least one symbole
 
 user name validator:
   - latins only
@@ -41,6 +47,9 @@ user name validator:
 
  class name validator:
   - latins only
+  - first symbol must be a number
+  - second symbol must be a capital letter
+  - max 2
   - required
 
 students' quantity
