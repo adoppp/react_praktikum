@@ -1,0 +1,37 @@
+@use "@styles/colors" as *;
+
+@mixin heading(
+  $size: 48px,
+  $height: 56px,
+  $weight: 600,
+  $align: center, 
+  $transform: uppercase, 
+  $decoration: none, 
+  $color: $bff-smooth-gray,
+) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+  text-transform: $transform;
+  text-decoration: $decoration;
+  text-align: $align;
+  color: $color;
+};
+
+@mixin text(
+  $size: 16px,
+  $height: 24px,
+  $weight: 400,
+  $align: left, 
+  $transform: uppercase, 
+  $decoration: none, 
+  $color: $bff-smooth-gray,
+) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+  text-transform: $transform;
+  text-decoration: $decoration;
+  text-align: $align;
+  color: $color;
+};
