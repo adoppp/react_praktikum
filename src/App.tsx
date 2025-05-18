@@ -1,16 +1,15 @@
-import classNames from 'classnames/bind';
-import styles from './App.module.scss';
-import { Header } from '@components/Header';
-
-const cn = classNames.bind(styles);
+import { Routes, Route } from 'react-router-dom';
+import { Auth } from './pages/Auth';
+import { Classes } from './pages/Classes';
 
 function App() {
 
   return (
-    <div className={cn('app')}>
-      <Header/>
-      APPLICATION
-    </div>
+    <Routes>
+      <Route path="/" element={<Classes />}/>
+      <Route path="/auth" element={<Auth />}/>
+      <Route path="/classes" element={<Classes />}/>
+    </Routes>
   )
 }
 

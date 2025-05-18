@@ -42,4 +42,4 @@ src
     - typography.scss
     - mixins.scss
     - button.scss
-```
+``
