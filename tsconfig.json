@@ -10,6 +10,9 @@
       "@/*": ["*"],
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
+      "@routes/*": ["routes/*"],
+      "@pages/*": ["pages/*"],
+      "@sections/*": ["sections/*"],
     }
   },
 }
