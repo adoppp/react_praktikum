@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-import { Auth } from './pages/Auth';
-import { Classes } from './pages/Classes';
+import { routes } from '@/routes/Router';
 
 function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Classes />}/>
-      <Route path="/auth" element={<Auth />}/>
-      <Route path="/classes" element={<Classes />}/>
+      {
+        routes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+        ))
+      }
     </Routes>
   )
 }

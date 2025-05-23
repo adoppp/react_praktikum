@@ -1,6 +1,6 @@
 import type { FC, ReactElement } from 'react';
 import classNames from 'classnames/bind';
-import styles from './SignIn.module.scss';
+import styles from '@/sections/Auth/SignIn/SignIn.module.scss';
 
 const cn = classNames.bind(styles);
 
