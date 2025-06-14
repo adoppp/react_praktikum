@@ -1,10 +1,5 @@
-import type { ReactElement } from "react";
-
-export const Routes = {
-    Default: "/",
-    Home: "/home",
-    Auth: "/auth"
-} as const;
+import type { ReactElement } from 'react';
+import { Routes } from './Router.config';
 
 type Route = typeof Routes[keyof typeof Routes];
 
