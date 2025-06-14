@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 
 export const Routes = {
-    Home: "/",
-    Classes: "/classes",
+    Default: "/",
+    Home: "/home",
     Auth: "/auth"
 } as const;
 

@@ -11,7 +11,7 @@ const Auth: FC<AuthProps> = (): ReactElement => {
   return (
     <div className={cn('auth')}>
       Auth
-      <Link to='/classes'>Classes</Link>
+      <Link to='/home'>Home</Link>
     </div>
   );
 };

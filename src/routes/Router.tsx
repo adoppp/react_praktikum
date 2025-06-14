@@ -1,15 +1,15 @@
 import { Routes, type routesType } from "@/routes/Router.types";
 import { Auth } from '@/pages/Auth/Auth';
-import { Classes } from "@/pages/Classes";
+import { Home } from "@/pages/Home";
 
 export const routes: routesType = [
     {
-        path: Routes.Home,
-        element: <Classes/>,
+        path: Routes.Default,
+        element: <Home/>,
     },
     {
-        path: Routes.Classes,
-        element: <Classes/>,
+        path: Routes.Home,
+        element: <Home/>,
     },
     {
         path: Routes.Auth,

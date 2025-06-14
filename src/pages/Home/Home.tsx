@@ -1,20 +1,20 @@
 import type { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import styles from './Classes.module.scss';
+import styles from './Home.module.scss';
 
 const cn = classNames.bind(styles);
 
-interface ClassesProps {};
+interface HomeProps {};
 
-const Classes: FC<ClassesProps> = (): ReactElement => {
+const Home: FC<HomeProps> = (): ReactElement => {
   return (
     <div className={cn('classes')}>
-      Classes
+      Home
       <Link to='/auth'>Auth</Link>
-      <Link to='/classes'>Classes</Link>
+      <Link to='/home'>Home</Link>
     </div>
   );
 };
 
-export { Classes }; 
+export { Home }; 
