@@ -1,19 +1,15 @@
 import { type routesType } from '@/routes/Router.types';
 import { Routes } from '@/routes/Router.config';
-import { Auth, Home, Shop, Profile, Cart, Favorites } from '@/pages';
+import { Auth, Dashboard, Profile } from '@/pages';
 
 export const routes: routesType = [
   {
     path: Routes.Default,
-    element: <Home />,
+    element: <Dashboard />,
   },
   {
-    path: Routes.Home,
-    element: <Home />,
-  },
-  {
-    path: Routes.Shop,
-    element: <Shop />,
+    path: Routes.Dashboard,
+    element: <Dashboard />,
   },
   {
     path: Routes.Auth,
@@ -22,13 +18,5 @@ export const routes: routesType = [
   {
     path: Routes.Profile,
     element: <Profile />,
-  },
-  {
-    path: Routes.Cart,
-    element: <Cart />,
-  },
-  {
-    path: Routes.Favorites,
-    element: <Favorites />,
   },
 ];

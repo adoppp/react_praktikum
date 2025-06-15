@@ -1,24 +1,21 @@
 import type { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import styles from './Home.module.scss';
+import styles from './Dashboard.module.scss';
 
 const cn = classNames.bind(styles);
 
-interface HomeProps {};
+interface DashboardProps {};
 
-const Home: FC<HomeProps> = (): ReactElement => {
+const Dashboard: FC<DashboardProps> = (): ReactElement => {
   return (
     <div className={cn('classes')}>
-      Home
+      Dashboard
       <Link to='/auth'>Auth</Link>
-      <Link to='/home'>Home</Link>
-      <Link to='/shop'>Shop</Link>
+      <Link to='/dashboard'>Dashboard</Link>
       <Link to='/profile'>Profile</Link>
-      <Link to='/favorites'>Favorites</Link>
-      <Link to='/cart'>Cart</Link>
     </div>
   );
 };
 
-export { Home }; 
+export { Dashboard }; 
