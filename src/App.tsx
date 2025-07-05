@@ -1,17 +1,17 @@
-import { Routes, Route } from 'react-router-dom';
-import { routes } from '@/routes/Router';
+import { Outlet } from 'react-router-dom';
 
-function App() {
-
+const App = () => {
   return (
-    <Routes>
-      {
-        routes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))
-      }
-    </Routes>
-  )
-}
+    <>
+      <header>
+        Header
+      </header>
 
-export default App;
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
+};
+
+export { App };
