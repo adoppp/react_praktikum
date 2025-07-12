@@ -19,11 +19,9 @@ interface InputProps {
     input?: string,
     error?: string
   }
-}
+};
 
 const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
-
-  console.log(customClass?.container)
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
