@@ -1,0 +1,43 @@
+@use '@styles/colors' as *;
+@use '@styles/typography' as *;
+@use '@styles/variables' as *;
+
+.input {
+  width: 100%;
+
+  &__label {
+    @include text($size: 14px);
+  }
+
+  & label {
+    display: block;
+    width: 100%;
+  }
+
+  &__element {
+    width: inherit;
+    outline: none;
+    padding: 8px 12px;
+    border: 1px solid $gray-transparent-50;
+    border-radius: 10px;
+    transition: $transition;
+    @include text();
+
+    &:hover {
+    border-color: $green-light;
+    }
+
+    &:focus {
+      padding-left: 8px;
+      border-color: $green-default;
+    }
+  }
+
+  &__element.error {
+    border-color: $red-dark;
+  }
+
+  &__error {
+    @include text($size: 12px, $color: $red-dark);
+  }
+}

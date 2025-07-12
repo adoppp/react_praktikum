@@ -9,8 +9,8 @@ const cn = classNames.bind(styles);
 interface DashboardProps { };
 
 const Dashboard: FC<DashboardProps> = (): ReactElement => {
-  const [ name, setName ] = useState<string>('');
-  const [ errorName, setErrorName ] = useState<string | null>(null);
+  const [name, setName] = useState<string>('');
+  const [errorName, setErrorName] = useState<string | null>(null);
 
   const validateInputName = useCallback((value: string): void => {
     setErrorName(null);
@@ -30,12 +30,15 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
 
   return (
     <div className={cn('classes')}>
-      <Input
-        value={name}
-        placeholder='Enter your name'
-        onChange={handleInputNameChange}
-        error={errorName}
-      />
+      <div className={cn('form')}>
+        <Input
+          id="first-name"
+          label="First Name:"
+          value={name}
+          onChange={handleInputNameChange}
+          error={errorName}
+        />
+      </div>
     </div>
   );
 };

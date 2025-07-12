@@ -23,9 +23,9 @@
   $height: 24px,
   $weight: 400,
   $align: left, 
-  $transform: uppercase, 
+  $transform: none, 
   $decoration: none, 
-  $color: $bff-smooth-gray,
+  $color: $dark-blue-default,
 ) {
   font-size: $size;
   line-height: $height;
