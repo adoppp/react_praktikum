@@ -18,26 +18,26 @@
     width: inherit;
     outline: none;
     padding: 8px 12px;
-    border: 1px solid $gray-transparent-50;
+    border: 1px solid $fog-transparent-50;
     border-radius: 10px;
     transition: $transition;
     @include text();
 
     &:hover {
-    border-color: $green-light;
+    border-color: $olive-light;
     }
 
     &:focus {
       padding-left: 8px;
-      border-color: $green-default;
+      border-color: $olive-default;
     }
   }
 
   &__element.error {
-    border-color: $red-dark;
+    border-color: $blood-dark;
   }
 
   &__error {
-    @include text($size: 12px, $color: $red-dark);
+    @include text($size: 12px, $color: $blood-dark);
   }
 }
