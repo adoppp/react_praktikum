@@ -2,5 +2,4 @@
 @use "@styles/typography" as *;
 
 .header {
-  @include heading($color: $bff-smooth-gray, $align: left);
 }
