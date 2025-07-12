@@ -7,9 +7,7 @@ const cn = classNames.bind(styles);
 
 const Loader = (): ReactElement => {
   return (
-    <div className={cn('loader')}>
-      Loading ...
-    </div>
+    <div className={cn('loader')}/>
   );
 };
 
