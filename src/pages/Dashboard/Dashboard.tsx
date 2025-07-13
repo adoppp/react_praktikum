@@ -37,6 +37,9 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
           value={name}
           onChange={handleInputNameChange}
           error={errorName}
+          customStyles={{
+            container: cn('input__container'),
+          }}
         />
       </div>
     </div>

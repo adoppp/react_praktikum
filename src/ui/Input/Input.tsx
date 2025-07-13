@@ -33,6 +33,7 @@ const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, e
       <label htmlFor={id}>
         <input
           className={cn('input__element', { 'error': error }, customClass?.input)}
+
           id={id}
           type="text"
           value={value}
