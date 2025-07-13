@@ -12,21 +12,27 @@ interface InputProps {
   placeholder?: string;
   error: string | null;
   onChange: (value: string) => void;
+  customStyles?: {
+    container?: string;
+    label?: string;
+    input?: string;
+    error?: string;
+  };
 }
 
-const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, error }): ReactElement => {
+const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, error, customStyles }): ReactElement => {
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
   return (
-    <div className={cn('input')}>
-      {label && <p className={cn('input__label')}>{label}</p>}
+    <div className={cn('input', customStyles?.container)}>
+      {label && <p className={cn('input__label', customStyles?.label)}>{label}</p>}
 
       <label htmlFor={id}>
         <input
-          className={cn('input__element', { 'error': error })}
+          className={cn('input__element', customStyles?.input, { 'error': error })}
           id={id}
           type="text"
           value={value}
@@ -35,7 +41,7 @@ const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, e
         />
       </label>
 
-      {error && <div className={cn('input__error')}>{error}</div>}
+      {error && <div className={cn('input__error', customStyles?.error)}>{error}</div>}
     </div>
   );
 });
