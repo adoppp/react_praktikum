@@ -24,13 +24,17 @@ const Select: FC<SelectProps> = ({ value, options, onChange }): ReactElement => 
   //   );
   // });
 
+  const handleOnChange = () => {
+    onChange();
+  };
+
   return (
     <div className={cn('select')}>
       <input 
         className={cn('select__input')}
         type="text"
         value={value}
-        onChange={onChange}
+        onChange={handleOnChange}
       />
       <ul className={cn('select__dropdown')}>
         {/* {options} */}
