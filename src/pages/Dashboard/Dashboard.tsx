@@ -11,8 +11,8 @@ interface DashboardProps { };
 
 const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const [name, setName] = useState<string>('');
-  const [userName, setUserName] = useState<string>('');
   const [errorName, setErrorName] = useState<string | null>(null);
+  const [user, setUser] = useState<string>('');
 
   const validateInputName = useCallback((value: string): void => {
     setErrorName(null);
@@ -30,23 +30,30 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
     setName(value);
   }, []);
 
-  const options = [
+  const selectUser = (value: string) => {
+    console.log('selectUser - value: ', value);
+    setUser(value);
+  };
+
+  const users = [
     {
       id: 1,
-      label: 'Bob',
-      value: 'bob',
+      label: 'User 01',
+      value: 'user-01',
     },
     {
       id: 2,
-      label: 'Kane',
-      value: 'kane',
+      label: 'User 02',
+      value: 'user-02',
     },
     {
       id: 3,
-      label: 'Jane',
-      value: 'jane',
+      label: 'User 03',
+      value: 'user-03',
     },
   ];
+
+  console.log('user: ', user);
 
   return (
     <div className={cn('classes')}>
@@ -62,9 +69,9 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
           }}
         />
         <Select
-          value={userName}
-          options={options}
-          onChange={}
+          value={user}
+          options={users}
+          selectUser={selectUser}
         />
       </div>
     </div>
