@@ -51,6 +51,21 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
       label: 'User 03',
       value: 'user-03',
     },
+    {
+      id: 4,
+      label: 'Jane',
+      value: 'user-04',
+    },
+    {
+      id: 5,
+      label: 'Marry',
+      value: 'user-05',
+    },
+    {
+      id: 6,
+      label: 'Swanson',
+      value: 'user-06',
+    },
   ];
 
   console.log('user: ', user);
