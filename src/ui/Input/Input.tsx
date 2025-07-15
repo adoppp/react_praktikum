@@ -1,12 +1,11 @@
-import { memo } from 'react';
-import type { ChangeEvent, FC, ReactElement } from 'react';
-import classNames from 'classnames/bind';
-import styles from './Input.module.scss';
+import type { FC, ReactElement } from 'react';
+import { InputDefault } from './InputDefault';
+import { InputPassword } from './InputPassword';
 
-const cn = classNames.bind(styles);
-
+type Input = 'default' | 'password' | 'email';
 
 interface InputProps {
+  inputType: Input;
   id: string;
   value: string;
   label?: string;
@@ -21,30 +20,15 @@ interface InputProps {
   }
 };
 
-const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+export const Input: FC<InputProps> = ({ inputType, id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
+  switch (inputType) {
+    case 'default':
+      return <InputDefault id={id} value={value} label={label} placeholder={placeholder} onChange={onChange} error={error} customClass={customClass} />
 
-  return (
-    <div className={cn('input', customClass?.container)}>
-      {label && <p className={cn('input__label', customClass?.label)}>{label}</p>}
+    case 'password':
+      return <InputPassword id={id} value={value} label={label} placeholder={placeholder} onChange={onChange} error={error} customClass={customClass} />
 
-      <label htmlFor={id}>
-        <input
-          className={cn('input__element', { 'error': error }, customClass?.input)}
-
-          id={id}
-          type="text"
-          value={value}
-          placeholder={placeholder}
-          onChange={handleOnChange}
-        />
-      </label>
-
-      {error && <div className={cn('input__error', customClass?.error)}>{error}</div>}
-    </div>
-  );
-});
-
-export { Input };
+      default:
+        return <div>Error in Input.tsx</div>
+  }
+}

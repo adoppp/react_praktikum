@@ -12,13 +12,15 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const [name, setName] = useState<string>('');
   const [errorName, setErrorName] = useState<string | null>(null);
 
+  const [password, setPassword] = useState<string>('');
+  const [errorPassword, setErrorPassword] = useState<string | null>(null);
+
   const validateInputName = useCallback((value: string): void => {
     setErrorName(null);
 
     if (value.trim() === '') {
       setErrorName('Input cannot be empty');
-    }
-    if (value.length < 3) {
+    } else if (value.length < 3) {
       setErrorName('At least 3 characters');
     }
   }, []);
@@ -28,18 +30,39 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
     setName(value);
   }, []);
 
+  const validateInputPassword = (value: string) => {
+    setErrorPassword(null);
+
+    if (value.trim() === '') {
+      setErrorPassword('Input cannot be empty');
+    } else if (value.length < 5) {
+      setErrorPassword('At least 6 charactes')
+    }; 
+  };
+
+  const handleInputPasswordChange = (value: string) => {
+    validateInputPassword(value);
+    setPassword(value);
+  };
+
   return (
     <div className={cn('classes')}>
       <div className={cn('form')}>
         <Input
+          inputType='default'
           id="first-name"
           label="First Name:"
           value={name}
           onChange={handleInputNameChange}
           error={errorName}
-          customClass={{
-            container: cn('input__container'),
-          }}
+        />
+        <Input
+          inputType='password'
+          id="password"
+          label="Password:"
+          value={password}
+          onChange={handleInputPasswordChange}
+          error={errorPassword}
         />
       </div>
     </div>
