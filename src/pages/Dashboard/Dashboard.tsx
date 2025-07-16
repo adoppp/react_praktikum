@@ -3,6 +3,7 @@ import type { FC, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Dashboard.module.scss';
 import { Input } from '@/ui/Input';
+import { InputPassword } from '@/ui/InputPassword';
 
 const cn = classNames.bind(styles);
 
@@ -49,15 +50,13 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
     <div className={cn('classes')}>
       <div className={cn('form')}>
         <Input
-          inputType='default'
           id="first-name"
           label="First Name:"
           value={name}
           onChange={handleInputNameChange}
           error={errorName}
         />
-        <Input
-          inputType='password'
+        <InputPassword
           id="password"
           label="Password:"
           value={password}

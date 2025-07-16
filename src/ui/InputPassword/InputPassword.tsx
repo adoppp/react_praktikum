@@ -1,8 +1,7 @@
 import { useState, type ChangeEvent, type FC, type ReactElement } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from '@/ui/Input/Input.module.scss';
-import inputPasswordStyles from '@/ui/Input/InputPassword/InputPassword.module.scss';
+import styles from '@/ui/InputPassword/InputPassword.module.scss';
 import { IconClosedEye, IconEye } from '@/assets/svg';
 
 interface InputPasswordProps {
@@ -20,7 +19,7 @@ interface InputPasswordProps {
     }
 };
 
-const cn = classNames.bind({...styles, ...inputPasswordStyles});
+const cn = classNames.bind(styles);
 
 export const InputPassword: FC<InputPasswordProps> = ({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -32,7 +31,7 @@ export const InputPassword: FC<InputPasswordProps> = ({ id, value, label, placeh
   const toggleVisibility = () => setVisible(!visible);
 
   return (
-    <div className={cn('input', 'input__password', customClass?.container)}>
+    <div className={cn('input', customClass?.container)}>
       {label && <p className={cn('input__label', customClass?.label)}>{label}</p>}
 
       <label htmlFor={id}>
