@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Dashboard.module.scss';
 import { Input } from '@/ui/Input';
 import { InputPassword } from '@/ui/InputPassword';
+import { InputEmail } from '@/ui/InputEmail/InputEmail';
 
 const cn = classNames.bind(styles);
 
@@ -12,6 +13,9 @@ interface DashboardProps { };
 const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const [name, setName] = useState<string>('');
   const [errorName, setErrorName] = useState<string | null>(null);
+
+  const [email, setEmail] = useState<string>('');
+  const [errorEmail, setErrorEmail] = useState<string | null>(null);
 
   const [password, setPassword] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string | null>(null);
@@ -29,6 +33,21 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const handleInputNameChange = useCallback((value: string) => {
     validateInputName(value);
     setName(value);
+  }, []);
+
+  const validateInputEmail = useCallback((value: string): void => {
+    setErrorEmail(null);
+
+    if (value.trim() === '') {
+      setErrorEmail('Input cannot be empty');
+    } else if (!value.includes('@')) {
+      setErrorEmail('Must be "@"');
+    }
+  }, []);
+
+  const handleInputEmailChange = useCallback((value: string) => {
+    validateInputEmail(value);
+    setEmail(value);
   }, []);
 
   const validateInputPassword = (value: string) => {
@@ -55,6 +74,13 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
           value={name}
           onChange={handleInputNameChange}
           error={errorName}
+        />
+        <InputEmail 
+          id='email'
+          label='Email:'
+          value={email}
+          onChange={handleInputEmailChange}
+          error={errorEmail}
         />
         <InputPassword
           id="password"
