@@ -31,7 +31,6 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
   }, []);
 
   const selectUser = (value: string) => {
-    console.log('selectUser - value: ', value);
     setUser(value);
   };
 
@@ -68,8 +67,6 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
     },
   ];
 
-  console.log('user: ', user);
-
   return (
     <div className={cn('classes')}>
       <div className={cn('form')}>
@@ -85,6 +82,7 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
         />
         <Select
           value={user}
+          placeholder='Select user ...'
           options={users}
           selectUser={selectUser}
         />

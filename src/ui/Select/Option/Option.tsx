@@ -14,8 +14,7 @@ interface OptionProps {
 
 const Option: FC<OptionProps> = ({ label, value, onClick, setIsDropdownActive, setSearchValue }): ReactElement => {
   const handleOnClick = () => {
-    console.log('Option clicked - value: ', value);
-    onClick(value);
+    onClick(label);
     setIsDropdownActive(false);
     setSearchValue(null);
   };
