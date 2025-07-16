@@ -5,6 +5,7 @@ import styles from './Dashboard.module.scss';
 import { Input } from '@/ui/Input';
 import { InputPassword } from '@/ui/InputPassword';
 import { InputEmail } from '@/ui/InputEmail/InputEmail';
+import { Select } from '@/ui/Select';
 
 const cn = classNames.bind(styles);
 
@@ -13,6 +14,7 @@ interface DashboardProps { };
 const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const [name, setName] = useState<string>('');
   const [errorName, setErrorName] = useState<string | null>(null);
+  const [user, setUser] = useState<string>('');
 
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string | null>(null);
@@ -64,6 +66,42 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
     validateInputPassword(value);
     setPassword(value);
   };
+  const selectUser = (value: string) => {
+    setUser(value);
+  };
+
+  const users = [
+    {
+      id: 1,
+      label: 'User 01',
+      value: 'user-01',
+    },
+    {
+      id: 2,
+      label: 'User 02',
+      value: 'user-02',
+    },
+    {
+      id: 3,
+      label: 'User 03',
+      value: 'user-03',
+    },
+    {
+      id: 4,
+      label: 'Jane',
+      value: 'user-04',
+    },
+    {
+      id: 5,
+      label: 'Marry',
+      value: 'user-05',
+    },
+    {
+      id: 6,
+      label: 'Swanson',
+      value: 'user-06',
+    },
+  ];
 
   return (
     <div className={cn('classes')}>
@@ -88,6 +126,12 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
           value={password}
           onChange={handleInputPasswordChange}
           error={errorPassword}
+        />
+        <Select
+          value={user}
+          placeholder='Select user ...'
+          options={users}
+          selectUser={selectUser}
         />
       </div>
     </div>

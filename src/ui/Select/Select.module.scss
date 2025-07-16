@@ -1,0 +1,16 @@
+@use '@styles/colors' as *;
+@use '@styles/typography' as *;
+@use '@styles/variables' as *;
+
+.select {
+  &__dropdown {
+    height: 0;
+    visibility: hidden;
+    border: 1px solid black;
+  }
+  &__dropdown.is-active {
+    height: 300px;
+    visibility: visible;
+  }
+
+}
