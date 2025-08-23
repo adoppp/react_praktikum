@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import type { ChangeEvent, FC, ReactElement } from 'react';
 import classNames from 'classnames/bind';
-import styles from '@/ui/Input/Input.module.scss';
+import styles from '@/ui/InputEmail/InputEmail.module.scss';
 
 const cn = classNames.bind(styles);
 
 
-interface InputProps {
+interface InputEmailProps {
   id: string;
   value: string;
   label?: string;
@@ -21,7 +21,7 @@ interface InputProps {
   }
 };
 
-export const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
+export const InputEmail: FC<InputEmailProps> = memo(({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -35,7 +35,7 @@ export const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onCh
           className={cn('input__element', { 'error': error }, customClass?.input)}
 
           id={id}
-          type="text"
+          type="email"
           value={value}
           placeholder={placeholder}
           onChange={handleOnChange}
