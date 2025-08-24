@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { FC, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/ui/Select/Select.module.scss';
@@ -25,6 +25,8 @@ interface Option {
   value: string;
 };
 
+type CurrentOptions2 = { userName: string, dashboards: OptionDashboard[] };
+
 const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }): ReactElement => {
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string | null>(null);
@@ -46,49 +48,55 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
     setIsDropdownActive(true);
   };
 
-  const renderOptions = () => {
-    let currentOptions: OptionDashboard[] | [{ label: string }] = [];
-
-    // if (filteredOptions.length) {
-    //   currentOptions = [...filteredOptions];
-    // } else {
-    //   currentOptions = [...options];
-    // }
-
-    if (filteredOptions.length) {
-      currentOptions = [...filteredOptions];
-    } else {
-      currentOptions = [{ label: 'Start typing to search ...' }];
+  const renderOptions = useMemo(() => {
+    if (!searchValue || searchValue.trim() === '') {
+      return <li>Start typing to search ...</li>;
     }
 
-    const resultElements = currentOptions.map((item: OptionDashboard | {label: string}) => {
-      if ('label' in item) {
-        return (
-          <li>{item.label}</li>
-        );
+    if (filteredOptions.length === 0) {
+      return <li>No results found</li>;
+    }
+
+    const currentOptions2: CurrentOptions2[] = [];
+
+    options.reduce((acc, current) => {
+      const isExists = acc.some(user => user.userName === current.userName);
+      
+      if (!isExists) {
+        acc.push({ userName: current.userName, dashboards: [...current.dashboards]});
       } else {
-        const user = options.filter((user: SelectOption) => user.userId === item.parentId)[0]?.userName;
+        acc.find(user => user.userName === current.userName)!.dashboards.push(...current.dashboards);
+      }
+      return acc;
+    }, currentOptions2);
+
+    const result = currentOptions2.map((option: CurrentOptions2) => {
+      const optionsElements = option.dashboards.map((element: OptionDashboard) => {
+        if (!filteredOptions.includes(element)) return <></>;
 
         return (
+          <Option
+            key={element.id}
+            label={element.title}
+            value={element.title}
+            onClick={selectOption}
+            setIsDropdownActive={setIsDropdownActive}
+            setSearchValue={setSearchValue}
+          />
+        )
+      })
+      return (
           <li>
-            <p style={{ backgroundColor: 'red' }}>{user}</p>
+            <p style={{ backgroundColor: 'red' }}>{option.userName}</p>
             <ul>
-              <Option
-                key={item.parentId}
-                label={item.title}
-                value={item.title}
-                onClick={selectOption}
-                setIsDropdownActive={setIsDropdownActive}
-                setSearchValue={setSearchValue}
-              />
+              {optionsElements}
             </ul>
           </li>
-        );
-      }
+      )
     });
 
-    return resultElements;
-  };
+    return result;
+  }, [searchValue, filteredOptions, options]);
 
   useOnClickOutside(dropdownRef, () => setIsDropdownActive(false));
 
@@ -104,7 +112,7 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
       />
       <div className={cn('select__icon-box', { 'is-active': isDropdownActive })}>{IconArrow}</div>
       <ul className={cn('select__dropdown', { 'is-active': isDropdownActive })}>
-        {renderOptions()}
+        {renderOptions}
       </ul>
     </div>
   );
