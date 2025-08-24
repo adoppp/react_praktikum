@@ -3,13 +3,60 @@
 @use '@styles/variables' as *;
 
 .select {
-  &__dropdown {
-    height: 0;
-    visibility: hidden;
-    border: 1px solid black;
+  width: 100%;
+  position: relative;
+
+  &__input {
+    width: inherit;
+    outline: none;
+    padding: 8px 12px;
+    border: 1px solid $fog-transparent-50;
+    border-radius: 10px;
+    transition: $transition;
+    @include text();
+    z-index: 2;
+
+    &:hover {
+      border-color: $olive-light;
+    }
+
+    &:focus {
+      padding-left: 8px;
+      border-color: $olive-default;
+    }
   }
+
+  &__icon-box {
+    display: inline-block;
+    position: absolute;
+    top: 11px;
+    right: 11px;
+  }
+
+  &__icon-box svg {
+    stroke: $fog-transparent-50;
+    transition: $transition;
+  }
+
+  &__icon-box.is-active svg {
+    transform: rotate(180deg);
+  }
+
+  &__dropdown {
+    width: 100%;
+    height: 0;
+    padding: 48px 0 8px 0;
+    visibility: hidden;
+    border: 1px solid $olive-default;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
   &__dropdown.is-active {
-    height: 300px;
+    height: auto;
     visibility: visible;
   }
 
