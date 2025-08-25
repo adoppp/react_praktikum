@@ -25,7 +25,7 @@ interface Option {
   value: string;
 };
 
-type CurrentOptions2 = { userName: string, dashboards: OptionDashboard[] };
+type CurrentOptions = { userName: string, dashboards: OptionDashboard[] };
 
 const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }): ReactElement => {
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false);
@@ -39,7 +39,7 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
 
     const mappedOptions = options.map((option: SelectOption) => option.dashboards).flat();
 
-    const result = mappedOptions.filter((dashboard: OptionDashboard) => dashboard.title.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase()));
+    const result = mappedOptions.filter((dashboard: OptionDashboard) => dashboard.title.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase().trim()));
 
     setFilteredOptions(result);
   };
@@ -50,14 +50,14 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
 
   const renderOptions = useMemo(() => {
     if (!searchValue || searchValue.trim() === '') {
-      return <li>Start typing to search ...</li>;
+      return <li className={cn('select__fallback')}>Start typing to search ...</li>;
     }
 
     if (filteredOptions.length === 0) {
-      return <li>No results found</li>;
+      return <li className={cn('select__fallback')}>No results found</li>;
     }
 
-    const currentOptions2: CurrentOptions2[] = [];
+    const currentOptions: CurrentOptions[] = [];
 
     options.reduce((acc, current) => {
       const isExists = acc.some(user => user.userName === current.userName);
@@ -68,9 +68,9 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
         acc.find(user => user.userName === current.userName)!.dashboards.push(...current.dashboards);
       }
       return acc;
-    }, currentOptions2);
+    }, currentOptions);
 
-    const result = currentOptions2.map((option: CurrentOptions2) => {
+    const result = currentOptions.map((option: CurrentOptions) => {
       const optionsElements = option.dashboards.map((element: OptionDashboard) => {
         if (!filteredOptions.includes(element)) return <></>;
 
@@ -84,11 +84,12 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
             setSearchValue={setSearchValue}
           />
         )
-      })
+      });
+
       return (
-          <li>
-            <p style={{ backgroundColor: 'red' }}>{option.userName}</p>
-            <ul>
+          <li className={cn('select__option')}>
+            <p>{option.userName}</p>
+            <ul >
               {optionsElements}
             </ul>
           </li>
