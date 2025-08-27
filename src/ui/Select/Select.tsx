@@ -1,5 +1,5 @@
-import { useMemo, useRef, useState } from 'react';
-import type { FC, ReactElement } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import type { FC, ReactElement, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/ui/Select/Select.module.scss';
 import { Option } from '@/ui/Select/Option';
@@ -36,16 +36,22 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
-
-    const mappedOptions = options.map((option: SelectOption) => option.dashboards).flat();
-
-    const result = mappedOptions.filter((dashboard: OptionDashboard) => dashboard.title.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase().trim()));
-
-    setFilteredOptions(result);
+    handleFilter(event.target.value);
   };
 
-  const handleOnFocus = () => {
+  const handleOnFocus = (event: FocusEvent<HTMLInputElement>) => {
+    if (event.currentTarget.value) {
+      setSearchValue(event.currentTarget.value);
+      handleFilter(event.currentTarget.value);
+    };
+
     setIsDropdownActive(true);
+  };
+
+  const handleFilter = (value: string) => {
+    const mappedOptions = options.map((option: SelectOption) => option.dashboards).flat();
+    const result = mappedOptions.filter((dashboard: OptionDashboard) => dashboard.title.toLocaleLowerCase().includes(value.toLocaleLowerCase().trim()));
+    setFilteredOptions(result);
   };
 
   const renderOptions = useMemo(() => {
