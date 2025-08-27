@@ -18,4 +18,8 @@
     &:active {
         background-color: $olive-light;
     }
+
+    &.is-active {
+        background-color: red;
+    }
 }

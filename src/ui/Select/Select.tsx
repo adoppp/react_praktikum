@@ -31,6 +31,7 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string | null>(null);
   const [filteredOptions, setFilteredOptions] = useState<OptionDashboard[]>([]);
+  const [currentOption, setCurrentOption] = useState<number>();
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,10 +42,8 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
 
   const handleOnFocus = (event: FocusEvent<HTMLInputElement>) => {
     if (event.currentTarget.value) {
-      setSearchValue(event.currentTarget.value);
       handleFilter(event.currentTarget.value);
     };
-
     setIsDropdownActive(true);
   };
 
@@ -83,11 +82,14 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
         return (
           <Option
             key={element.id}
+            isActive={element.id === currentOption}
             label={element.title}
             value={element.title}
+            id={element.id}
             onClick={selectOption}
             setIsDropdownActive={setIsDropdownActive}
             setSearchValue={setSearchValue}
+            handleId={setCurrentOption}
           />
         )
       });
@@ -95,7 +97,7 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
       return (
           <li className={cn('select__option')}>
             <p>{option.userName}</p>
-            <ul >
+            <ul>
               {optionsElements}
             </ul>
           </li>
