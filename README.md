@@ -1,5 +1,4 @@
 # themes
-- show current dashboard in dropdown 
 - dashboards hides with delay 
 - open method
 

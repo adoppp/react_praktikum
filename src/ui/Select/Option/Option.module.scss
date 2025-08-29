@@ -7,9 +7,9 @@
 
     padding: 4px 8px;
 
+    // transition: $transition;
     cursor: pointer;
-    transition: $transition;
-
+    
     &:hover {
         background-color: $snow-dark;
         color: $fog-light;
@@ -20,6 +20,7 @@
     }
 
     &.is-active {
-        background-color: red;
+        background-color: $olive-dark;
+        color: $snow-default;
     }
 }
