@@ -54,7 +54,8 @@
     top: 0;
     left: 0;
     z-index: 1;
-    // transition: $transition;
+    transition: height, visibility 0.3 ease;
+    interpolate-size: allow-keywords;
   }
 
   &__dropdown.is-active {

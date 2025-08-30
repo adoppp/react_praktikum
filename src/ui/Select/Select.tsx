@@ -1,11 +1,10 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { FC, ReactElement, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/ui/Select/Select.module.scss';
 import { Option } from '@/ui/Select/Option';
 import { useOnClickOutside } from '@/utils/useOnClickOutside';
 import { IconArrow } from '@/assets/svg';
-// import type { OptionDashboard } from '@/pages/Dashboard/Dashboard';
 import type { SelectOptions, SelectOption, OptionDashboard } from '@/pages/Dashboard/Dashboard';
 
 const cn = classNames.bind(styles);
@@ -21,7 +20,6 @@ interface Option {
   userId: number;
   userName: string;
   userValue: string;
-  // dashboards: OptionDashboard[];
   value: string;
 };
 
@@ -66,9 +64,12 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
 
     options.reduce((acc, current) => {
       const isExists = acc.some(user => user.userName === current.userName);
-      
+
       if (!isExists) {
-        acc.push({ userName: current.userName, dashboards: [...current.dashboards]});
+        acc.push({
+          userName: current.userName,
+          dashboards: [...current.dashboards],
+        });
       } else {
         acc.find(user => user.userName === current.userName)!.dashboards.push(...current.dashboards);
       }
@@ -95,12 +96,12 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
       });
 
       return (
-          <li className={cn('select__option')}>
-            <p>{option.userName}</p>
-            <ul>
-              {optionsElements}
-            </ul>
-          </li>
+        <li className={cn('select__option')}>
+          <p>{option.userName}</p>
+          <ul>
+            {optionsElements}
+          </ul>
+        </li>
       )
     });
 
