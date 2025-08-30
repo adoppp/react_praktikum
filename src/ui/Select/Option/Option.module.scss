@@ -1,0 +1,26 @@
+@use '@styles/colors' as *;
+@use '@styles/typography' as *;
+@use '@styles/variables' as *;
+
+.option {
+    @include text($size: 20px);
+
+    padding: 4px 8px;
+
+    // transition: $transition;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: $snow-dark;
+        color: $fog-light;
+    }
+
+    &:active {
+        background-color: $olive-light;
+    }
+
+    &.is-active {
+        background-color: $olive-dark;
+        color: $snow-default;
+    }
+}

@@ -94,12 +94,12 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
       userValue: 'jane',
       dashboards: [
         {
-          id: 1,
+          id: 14,
           parentId: 1,
           title: 'Dashboard 01'
         },
         {
-          id: 2,
+          id: 27,
           parentId: 1,
           title: 'Dashboard 02'
         },
@@ -111,12 +111,12 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
       userValue: 'bob',
       dashboards: [
         {
-          id: 1,
+          id: 21,
           parentId: 2,
           title: 'Dashboard 01'
         },
         {
-          id: 2,
+          id: 23,
           parentId: 2,
           title: 'Dashboard 02'
         },
