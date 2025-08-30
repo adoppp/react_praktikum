@@ -5,6 +5,7 @@ import styles from '@/ui/Select/Select.module.scss';
 import { Option } from '@/ui/Select/Option';
 import { useOnClickOutside } from '@/utils/useOnClickOutside';
 import { IconArrow } from '@/assets/svg';
+import { debounce } from '@/utils/debounce';
 import type { SelectOptions, SelectOption, OptionDashboard } from '@/pages/Dashboard/Dashboard';
 
 const cn = classNames.bind(styles);
@@ -109,6 +110,8 @@ const Select: FC<SelectProps> = ({ value, placeholder, options, selectOption }):
   }, [searchValue, filteredOptions, options]);
 
   useOnClickOutside(dropdownRef, () => setIsDropdownActive(false));
+
+  console.log('Search Value: ', searchValue);
 
   return (
     <div className={cn('select')} ref={dropdownRef}>
