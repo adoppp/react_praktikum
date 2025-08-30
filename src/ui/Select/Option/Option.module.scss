@@ -6,6 +6,7 @@
   @include text($size: 20px);
   padding: 4px 8px;
   cursor: pointer;
+  transition: background-color, color 0.3s ease;
 
   &:hover {
     background-color: $snow-dark;
