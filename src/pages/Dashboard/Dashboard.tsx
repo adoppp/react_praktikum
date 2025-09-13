@@ -6,6 +6,7 @@ import { Input } from '@/ui/Input';
 import { InputPassword } from '@/ui/InputPassword';
 import { InputEmail } from '@/ui/InputEmail/InputEmail';
 import { Select } from '@/ui/Select';
+import { Button } from '@/ui/Button';
 import { useDebounce } from '@/utils/useDebounce';
 
 const cn = classNames.bind(styles);
@@ -127,40 +128,10 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
 
   ];
 
-  // const users = [
-  //   {
-  //     id: 1,
-  //     label: 'User 01',
-  //     value: 'user-01',
-  //   },
-  //   {
-  //     id: 2,
-  //     label: 'User 02',
-  //     value: 'user-02',
-  //   },
-  //   {
-  //     id: 3,
-  //     label: 'User 03',
-  //     value: 'user-03',
-  //   },
-  //   {
-  //     id: 4,
-  //     label: 'Jane',
-  //     value: 'user-04',
-  //   },
-  //   {
-  //     id: 5,
-  //     label: 'Marry',
-  //     value: 'user-05',
-  //   },
-  //   {
-  //     id: 6,
-  //     label: 'Swanson',
-  //     value: 'user-06',
-  //   },
-  // ];
-
-  console.log('debouncedName: ', debouncedName);
+  const handleButtonOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    console.log('Clicked');
+  };
 
   return (
     <div className={cn('classes')}>
@@ -192,6 +163,14 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
           options={dashboards}
           selectOption={selectDashboard}
         />
+
+        <Button
+          onClick={handleButtonOnClick}
+          type="button"
+        >
+          <div>Button</div>
+        </Button>
+
       </div>
     </div>
   );
