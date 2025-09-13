@@ -6,6 +6,7 @@ import { Input } from '@/ui/Input';
 import { InputPassword } from '@/ui/InputPassword';
 import { InputEmail } from '@/ui/InputEmail/InputEmail';
 import { Select } from '@/ui/Select';
+import { useDebounce } from '@/utils/useDebounce';
 
 const cn = classNames.bind(styles);
 
@@ -30,6 +31,7 @@ export type SelectOptions = SelectOption[];
 
 const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const [name, setName] = useState<string>('');
+  const debouncedName = useDebounce(name, 500);
   const [errorName, setErrorName] = useState<string | null>(null);
   const [dashboard, setDashboard] = useState<string>('');
 
@@ -39,7 +41,7 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
   const [password, setPassword] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string | null>(null);
 
-  const validateInputName = useCallback((value: string): void => {
+  const validateInputName = (value: string): void => {
     setErrorName(null);
 
     if (value.trim() === '') {
@@ -47,12 +49,12 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
     } else if (value.length < 3) {
       setErrorName('At least 3 characters');
     }
-  }, []);
+  };
 
-  const handleInputNameChange = useCallback((value: string) => {
+  const handleInputNameChange = (value: string) => {
     validateInputName(value);
     setName(value);
-  }, []);
+  };
 
   const validateInputEmail = useCallback((value: string): void => {
     setErrorEmail(null);
@@ -157,6 +159,8 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
   //     value: 'user-06',
   //   },
   // ];
+
+  console.log('debouncedName: ', debouncedName);
 
   return (
     <div className={cn('classes')}>

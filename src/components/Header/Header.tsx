@@ -8,8 +8,7 @@ interface HeaderProps {
   isAdmin?: boolean;
 };
 
-const Header: FC<HeaderProps> = ({ isAdmin = false }): ReactElement => {
-  console.log(isAdmin);
+const Header: FC<HeaderProps> = (): ReactElement => {
 
   return (
     <div className={cn('header')}>

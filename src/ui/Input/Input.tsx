@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import type { ChangeEvent, FC, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/ui/Input/Input.module.scss';
@@ -21,7 +20,7 @@ interface InputProps {
   }
 };
 
-export const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
+export const Input: FC<InputProps> = ({ id, value, label, placeholder, onChange, error, customClass }): ReactElement => {
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -45,4 +44,4 @@ export const Input: FC<InputProps> = memo(({ id, value, label, placeholder, onCh
       {error && <div className={cn('input__error', customClass?.error)}>{error}</div>}
     </div>
   );
-});
+};

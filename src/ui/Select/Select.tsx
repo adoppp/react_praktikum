@@ -5,7 +5,6 @@ import styles from '@/ui/Select/Select.module.scss';
 import { Option } from '@/ui/Select/Option';
 import { useOnClickOutside } from '@/utils/useOnClickOutside';
 import { IconArrow } from '@/assets/svg';
-import { debounce } from '@/utils/debounce';
 import type { SelectOptions, SelectOption, OptionDashboard } from '@/pages/Dashboard/Dashboard';
 
 const cn = classNames.bind(styles);
