@@ -1,0 +1,93 @@
+@use '@styles/colors' as *;
+@use '@styles/typography' as *;
+@use '@styles/variables' as *;
+
+// Basic styles for all buttons' presets:
+@mixin button-basic-styles() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: $transition;
+  cursor: pointer;
+};
+
+@mixin button-with-icon-basic-styles() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: $transition;
+  cursor: pointer;
+};
+
+// Preset 01:
+@mixin button-primary(
+  $buttonSize: medium,
+  $width: 100%,
+  $textColor: $dark-blue-default,
+  $colorName: 'olive',
+  $isTransparent: false,
+  $isDisabled: false, 
+) {
+  @include button-basic-styles();
+  width: $width;
+  background-color: map-get($colors, $colorName);
+
+  // Default color scheme:
+  @if ($colorName == 'blue') {
+    color: $dark-blue-default;
+  } @else {
+    color: $textColor;
+  }
+
+  // States:
+  &:hover {
+    background-color: map-get($colors, #{$colorName}-hover);
+  }
+
+  &:active {
+    background-color: map-get($colors, #{$colorName}-active);
+  }
+
+  &:focus {
+    outline: 1px solid map-get($colors, $colorName);
+  }
+
+  // Sizes:
+  @if $buttonSize == 'large' {
+    padding: 14px 32px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  @if $buttonSize == 'medium' {
+    padding: 12px 24px;
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  @if $buttonSize == 'small' {
+    padding: 8px 20px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  // Additional states:
+  @if $isTransparent {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border: 1px solid $dark-blue-dark;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  @if $isDisabled {
+    pointer-events: none;
+    background-color: $fog-light;
+  }
+};
