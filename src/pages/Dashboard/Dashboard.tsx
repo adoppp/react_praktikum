@@ -165,12 +165,15 @@ const Dashboard: FC<DashboardProps> = (): ReactElement => {
         />
 
         <Button
+          className={cn('button')}
           onClick={handleButtonOnClick}
           type="button"
         >
           <div>Button</div>
         </Button>
-
+        <div className={cn('box')}>
+          Box
+        </div>
       </div>
     </div>
   );
