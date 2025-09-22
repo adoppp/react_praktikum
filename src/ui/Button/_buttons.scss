@@ -27,33 +27,34 @@
 @mixin button-primary(
   $buttonSize: medium,
   $width: 100%,
-  $textColor: $dark-blue-default,
+  $textColor: color($name: 'snow'),
   $colorName: 'olive',
   $isTransparent: false,
   $isDisabled: false, 
 ) {
   @include button-basic-styles();
   width: $width;
-  background-color: map-get($colors, $colorName);
+  background-color: map-get($colors, #{$colorName}-default);
 
   // Default color scheme:
-  @if ($colorName == 'blue') {
-    color: $dark-blue-default;
-  } @else {
-    color: $textColor;
-  }
+  color: $textColor;
+
+  // Transition
+  transition: $transition;
 
   // States:
   &:hover {
-    background-color: map-get($colors, #{$colorName}-hover);
+    background-color: map-get($colors, #{$colorName}-light);
+    color: color('dark-blue');
   }
 
   &:active {
-    background-color: map-get($colors, #{$colorName}-active);
+    background-color: map-get($colors, #{$colorName}-dark);
+    color: $textColor;
   }
 
   &:focus {
-    outline: 1px solid map-get($colors, $colorName);
+    // outline: 1px solid map-get($colors, #{$colorName}-default);
   }
 
   // Sizes:

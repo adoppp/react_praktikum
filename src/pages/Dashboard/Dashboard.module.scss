@@ -1,3 +1,5 @@
+@use '@/ui/Button/buttons' as *;
+
 .parent {
   width: 25px;
   height: 25px;
@@ -13,4 +15,12 @@
 .form {
   max-width: 600px;
   width: 100%;
+}
+
+.box {
+  background-color: color('blood', 'dark')
+}
+
+.button {
+  @include button-primary();
 }
